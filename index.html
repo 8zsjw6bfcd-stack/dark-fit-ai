@@ -1,1 +1,123 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkFit AI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #090b10;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      padding: 24px 16px;
+    }
+    main {
+      max-width: 520px;
+      margin: 35px auto;
+    }
+    .logo {
+      color: #b18cff;
+      font-size: 15px;
+      letter-spacing: 4px;
+    }
+    h1 { font-size: 38px; margin: 12px 0; }
+    h1 span { color: #a77aff; }
+    p { color: #aaaeba; line-height: 1.9; }
+    .panel {
+      margin-top: 28px;
+      padding: 20px;
+      border: 1px solid #292d3a;
+      border-radius: 18px;
+      background: #11141d;
+    }
+    label { display: block; margin: 16px 0 8px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      color: white;
+      background: #090b10;
+      border: 1px solid #34394a;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 10px;
+      background: #a77aff;
+      color: #090b10;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    #status { font-size: 13px; }
+    footer {
+      margin-top: 30px;
+      color: #666c7b;
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="logo">DARKFIT / AI LAB</div>
+    <h1>DarkFit <span>AI</span></h1>
+    <p>استودیوی هوش مصنوعی برای ساخت ایده‌های خلاقانه عکس و ویدیو.</p>
+
+    <section class="panel">
+      <h2>استودیوی خلاقیت</h2>
+      <p>ایده‌ات را بنویس و نوع پروژه را انتخاب کن.</p>
+
+      <label for="type">نوع پروژه</label>
+      <select id="type">
+        <option>ساخت تصویر</option>
+        <option>ساخت ویدیو</option>
+        <option>ایده برای ریلز اینستاگرام</option>
+      </select>
+
+      <label for="prompt">توضیحات ایده</label>
+      <textarea id="prompt" placeholder="مثلاً: ساخت یک تصویر بدنسازی تاریک و سینمایی..."></textarea>
+
+      <button onclick="makePrompt()">آماده‌سازی پرامپت</button>
+      <p id="status"></p>
+      <textarea id="result" placeholder="پرامپت آماده اینجا نمایش داده می‌شود..." readonly></textarea>
+      <button onclick="copyPrompt()">کپی پرامپت</button>
+    </section>
+
+    <footer> DARKFIT AI · نسخه اولیه آزمایشی </footer>
+  </main>
+
+  <script>
+    function makePrompt() {
+      const idea = document.getElementById('prompt').value.trim();
+      const type = document.getElementById('type').value;
+      if (!idea) {
+        document.getElementById('status').textContent =
+          'لطفاً ابتدا ایده‌ات را بنویس.';
+        return;
+      }
+      document.getElementById('result').value =
+        type + '، سبک حرفه‌ای و سینمایی، جزئیات بالا، نورپردازی دقیق. ایده: ' + idea;
+      document.getElementById('status').textContent =
+        'پرامپت آماده شد؛ می‌توانی آن را کپی کنی.';
+    }
+
+    function copyPrompt() {
+      const result = document.getElementById('result');
+      result.focus();
+      result.select();
+      document.getElementById('status').textContent =
+        'متن انتخاب شد؛ اگر کپی خودکار انجام نشد، Copy را بزن.';
+      try { document.execCommand('copy'); } catch (e) {}
+    }
+  </script>
+</body>
+</html>
+
