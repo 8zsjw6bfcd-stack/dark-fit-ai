@@ -1,123 +1,128 @@
 
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DarkFit AI</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #090b10;
-      color: #f5f5f5;
-      font-family: Arial, sans-serif;
-      padding: 24px 16px;
-    }
-    main {
-      max-width: 520px;
-      margin: 35px auto;
-    }
-    .logo {
-      color: #b18cff;
-      font-size: 15px;
-      letter-spacing: 4px;
-    }
-    h1 { font-size: 38px; margin: 12px 0; }
-    h1 span { color: #a77aff; }
-    p { color: #aaaeba; line-height: 1.9; }
-    .panel {
-      margin-top: 28px;
-      padding: 20px;
-      border: 1px solid #292d3a;
-      border-radius: 18px;
-      background: #11141d;
-    }
-    label { display: block; margin: 16px 0 8px; }
-    input, select, textarea {
-      width: 100%;
-      padding: 13px;
-      color: white;
-      background: #090b10;
-      border: 1px solid #34394a;
-      border-radius: 10px;
-      font-size: 15px;
-    }
-    textarea { min-height: 110px; resize: vertical; }
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 18px;
-      border: 0;
-      border-radius: 10px;
-      background: #a77aff;
-      color: #090b10;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    #status { font-size: 13px; }
-    footer {
-      margin-top: 30px;
-      color: #666c7b;
-      font-size: 12px;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090d">
+<title>DarkFit AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#09090d;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:22px 15px}
+main{max-width:650px;margin:auto}
+header{text-align:center;padding:24px 0}
+.logo{font-size:34px;font-weight:900;letter-spacing:1px}
+.logo span{color:#a78bfa}
+header p{color:#aaa;font-size:14px}
+h2{font-size:19px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0}
+button,select,textarea{font:inherit}
+.tabs button{padding:13px 4px;border:1px solid #333340;border-radius:12px;background:#15151d;color:#ddd;cursor:pointer;font-size:13px}
+.tabs button.active{background:#6d28d9;border-color:#a78bfa;color:white}
+.panel{background:#13131b;border:1px solid #292936;border-radius:18px;padding:19px}
+label{display:block;margin:17px 0 9px;font-size:14px}
+select,textarea{width:100%;padding:13px;border-radius:11px;border:1px solid #393947;background:#0c0c12;color:white;outline:none}
+textarea{min-height:125px;resize:vertical;line-height:1.9}
+.primary{width:100%;margin-top:17px;padding:15px;border:0;border-radius:12px;background:#7c3aed;color:white;font-weight:bold;cursor:pointer}
+.secondary{width:100%;margin-top:10px;padding:12px;border:1px solid #393947;border-radius:12px;background:#1b1b26;color:white;cursor:pointer}
+.result{display:none;margin-top:20px}
+.result textarea{min-height:190px}
+.note{font-size:12px;color:#aaa;line-height:1.9;margin-top:18px}
+footer{text-align:center;color:#666;font-size:12px;padding:25px 0}
+</style>
 </head>
 <body>
-  <main>
-    <div class="logo">DARKFIT / AI LAB</div>
-    <h1>DarkFit <span>AI</span></h1>
-    <p>استودیوی هوش مصنوعی برای ساخت ایده‌های خلاقانه عکس و ویدیو.</p>
+<main>
+<header>
+<div class="logo">DARKFIT <span>AI</span></div>
+<p>استودیوی هوش مصنوعی برای ایده‌های خلاقانه</p>
+</header>
 
-    <section class="panel">
-      <h2>استودیوی خلاقیت</h2>
-      <p>ایده‌ات را بنویس و نوع پروژه را انتخاب کن.</p>
+<h2>استودیوی خلاقیت</h2>
+<p style="color:#aaa;font-size:14px">نوع پروژه را انتخاب کن و ایده‌ات را بنویس.</p>
 
-      <label for="type">نوع پروژه</label>
-      <select id="type">
-        <option>ساخت تصویر</option>
-        <option>ساخت ویدیو</option>
-        <option>ایده برای ریلز اینستاگرام</option>
-      </select>
+<div class="tabs">
+<button class="active" data-type="image">ساخت تصویر</button>
+<button data-type="video">ساخت ویدیو</button>
+<button data-type="reel">ایده ریلز</button>
+</div>
 
-      <label for="prompt">توضیحات ایده</label>
-      <textarea id="prompt" placeholder="مثلاً: ساخت یک تصویر بدنسازی تاریک و سینمایی..."></textarea>
+<section class="panel">
+<label for="style">سبک موردنظر</label>
+<select id="style">
+<option value="سینمایی، واقع‌گرایانه و حرفه‌ای">سینمایی و واقع‌گرایانه</option>
+<option value="تاریک، حماسی و فانتزی">تاریک و حماسی</option>
+<option value="طبیعی، مینیمال و شیک">طبیعی و مینیمال</option>
+<option value="پر انرژی، ورزشی و انگیزشی">ورزشی و انگیزشی</option>
+</select>
 
-      <button onclick="makePrompt()">آماده‌سازی پرامپت</button>
-      <p id="status"></p>
-      <textarea id="result" placeholder="پرامپت آماده اینجا نمایش داده می‌شود..." readonly></textarea>
-      <button onclick="copyPrompt()">کپی پرامپت</button>
-    </section>
+<label for="idea">توضیحات ایده</label>
+<textarea id="idea" placeholder="ایده‌ات را اینجا بنویس..."></textarea>
 
-    <footer> DARKFIT AI · نسخه اولیه آزمایشی </footer>
-  </main>
+<button class="primary" id="generate">آماده‌سازی پرامپت</button>
 
-  <script>
-    function makePrompt() {
-      const idea = document.getElementById('prompt').value.trim();
-      const type = document.getElementById('type').value;
-      if (!idea) {
-        document.getElementById('status').textContent =
-          'لطفاً ابتدا ایده‌ات را بنویس.';
-        return;
-      }
-      document.getElementById('result').value =
-        type + '، سبک حرفه‌ای و سینمایی، جزئیات بالا، نورپردازی دقیق. ایده: ' + idea;
-      document.getElementById('status').textContent =
-        'پرامپت آماده شد؛ می‌توانی آن را کپی کنی.';
-    }
+<div class="result" id="result">
+<label for="output">پرامپت آماده‌شده</label>
+<textarea id="output" readonly></textarea>
+<button class="secondary" id="copy">کپی پرامپت</button>
+</div>
+</section>
 
-    function copyPrompt() {
-      const result = document.getElementById('result');
-      result.focus();
-      result.select();
-      document.getElementById('status').textContent =
-        'متن انتخاب شد؛ اگر کپی خودکار انجام نشد، Copy را بزن.';
-      try { document.execCommand('copy'); } catch (e) {}
-    }
-  </script>
+<p class="note">این نسخه پرامپت تولید می‌کند. برای ساخت واقعی تصویر و ویدیو باید موتور هوش مصنوعی مناسب به پروژه متصل شود.</p>
+<footer>DarkFit AI · Creative Studio</footer>
+</main>
+
+<script>
+let type="image";
+const tabs=document.querySelectorAll("[data-type]");
+const idea=document.getElementById("idea");
+const output=document.getElementById("output");
+const result=document.getElementById("result");
+
+const placeholders={
+image:"مثلاً: پرتره بدنسازی من در باشگاه تاریک با نور سینمایی...",
+video:"مثلاً: ویدیوی سینمایی از تمرین سنگین من با حرکت دوربین...",
+reel:"مثلاً: یک ریلز بدنسازی با شروع شوکه‌کننده و پایان قدرتمند..."
+};
+
+tabs.forEach(button=>{
+button.addEventListener("click",()=>{
+type=button.dataset.type;
+tabs.forEach(b=>b.classList.toggle("active",b===button));
+idea.placeholder=placeholders[type];
+result.style.display="none";
+});
+});
+
+document.getElementById("generate").addEventListener("click",()=>{
+const text=idea.value.trim();
+if(!text){
+idea.focus();
+idea.placeholder="اول ایده‌ات را اینجا بنویس...";
+return;
+}
+const style=document.getElementById("style").value;
+const instructions={
+image:"یک پرامپت حرفه‌ای برای تولید تصویر بنویس. جزئیات نورپردازی، ترکیب‌بندی، کیفیت و حفظ ظاهر واقعی سوژه را مشخص کن.",
+video:"یک پرامپت حرفه‌ای برای تولید ویدیو بنویس. حرکت دوربین، حرکات سوژه، نورپردازی، زمان‌بندی و پایان‌بندی را مشخص کن.",
+reel:"یک سناریوی جذاب برای ریلز اینستاگرام بنویس. شروع گیرنده، صحنه‌ها، متن روی ویدیو، پیشنهاد موسیقی، کپشن و دعوت به تعامل را ارائه کن."
+};
+output.value=instructions[type]+"\nسبک بصری: "+style+"\nایده اصلی: "+text+"\nخروجی را با جزئیات دقیق و مناسب ابزارهای هوش مصنوعی آماده کن.";
+result.style.display="block";
+result.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+
+document.getElementById("copy").addEventListener("click",async()=>{
+try{
+await navigator.clipboard.writeText(output.value);
+document.getElementById("copy").textContent="کپی شد ✓";
+}catch(e){
+output.focus();
+output.select();
+document.getElementById("copy").textContent="متن انتخاب شد؛ کپی کن";
+}
+});
+</script>
 </body>
 </html>
-
